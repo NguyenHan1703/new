@@ -1,0 +1,136 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffe6e6;
+    color: #333;
+    height: 200vh; /* Đảm bảo trang đủ cao để cuộn */
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin-top: 20px; /* Khoảng cách cho tiêu đề */
+}
+
+header h1 {
+    font-size: 3em;
+    color: #e91e63;
+    margin: 0;
+    margin-left: 300px;
+    padding: 20px 0;
+}
+main p {
+    margin-left: 300px;
+}
+.message {
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.stacked-images {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    margin: 0 auto;
+}
+
+.stacked-images img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    transition: transform 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.stacked-images img.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Hiệu ứng bong bóng bay khắp trang */
+.balloon-container {
+    position: absolute;
+    bottom: 0; /* Đặt ở cuối trang */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Đảm bảo bong bóng không cản trở các hành động */
+    z-index: 10;
+}
+
+.balloon {
+    position: absolute;
+    bottom: 0; /* Đặt bong bóng bắt đầu từ đáy */
+    width: 40px;
+    height: 60px;
+    background-color: #ff5e57;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: inset -15px -10px 20px rgba(0,0,0,0.2);
+    animation: floatBalloon 10s ease-in forwards; /* Sử dụng forwards để bong bóng giữ vị trí cuối */
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background-color: #333;
+}
+
+/* Thêm các kiểu bong bóng với màu sắc khác nhau */
+.balloon:nth-child(2) {
+    background-color: #ffcc57;
+    width: 50px;
+    height: 70px;
+    animation-delay: 2s;
+}
+
+.balloon:nth-child(3) {
+    background-color: #57ff5e;
+    width: 45px;
+    height: 65px;
+    animation-delay: 4s;
+}
+
+.balloon:nth-child(4) {
+    background-color: #57bfff;
+    width: 55px;
+    height: 75px;
+    animation-delay: 6s;
+}
+
+.balloon:nth-child(5) {
+    background-color: #ff57d3;
+    width: 48px;
+    height: 68px;
+    animation-delay: 8s;
+}
+
+/* Hoạt cảnh bong bóng bay lên */
+@keyframes floatBalloon {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1; /* Bắt đầu với độ mờ 1 */
+    }
+    100% {
+        transform: translateY(-1000px) rotate(15deg); /* Bay lên 1000px */
+        opacity: 0; /* Dần biến mất */
+    }
+}
